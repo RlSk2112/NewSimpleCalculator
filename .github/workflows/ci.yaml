@@ -1,0 +1,27 @@
+name: Continuous Integration
+
+on:
+  push:
+    branches:
+      - master
+
+
+jobs:
+  builds-and-push:
+    runs-on: windows
+    steps:
+      - name: Setup Maven and Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: "17"
+          distribution: "temurin"
+          cache: "maven"
+
+      - name: Run tests
+        run: mvn clean test
+
+      - name: Build project
+        run: mvn clean package
+
+      - name: Run project
+        run: mvn spring-boot:run
