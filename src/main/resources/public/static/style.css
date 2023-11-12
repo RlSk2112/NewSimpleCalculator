@@ -1,0 +1,49 @@
+body {
+    background: rgb(36,74,186);
+    background: linear-gradient(90deg, rgba(36,74,186,1) 0%, rgba(22,104,115,1) 49%, rgba(42,143,143,1) 100%);
+    font-family: "Sentinel A", "Sentinel B", Georgia, "Times New Roman", Times, serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 10px;
+    border: 2px solid darkblue;
+    border-radius: 6px;
+    padding: 12px;
+    width: 35%;
+    /*overflow: hidden;*/
+    background-color: lightseagreen;
+}
+
+#calc {
+    width: 120px;
+    padding: 8px;
+    background-color: blueviolet;
+    border: 1px solid grey;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+}
+
+.container label {
+    margin-right: 6px;
+}
+
+
+@media (max-width: 860px) {
+    label {
+        display: block;
+    }
+}
+
+@media (max-width: 560px) {
+    .container {
+        width: 60%;
+    }
+
+}
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculator</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+
+<div class="container">
+    <h1>Simple Calculator</h1>
+    <div class="input"><label for="in1">First Number</label><input id="in1" type="number"></div>
+    <div class="input"><label for="in2">Second Number</label><input id="in2" type="number"></div>
+    <div class="input">
+        <label for="in3">Operation</label>
+        <input id="in3" type="text" placeholder="add/subtract/multiply/divide">
+    </div>
+    <div class="btn-container">
+        <button id="calc">calculate</button>
+        <span>result:</span>
+        <span id="result"></span>
+    </div>
+
+</div>
+
+<script>
+    function calc() {
+        let inputOne = document.getElementById('in1');
+        let inputTwo = document.getElementById('in2');
+        let inputThree = document.getElementById('in3');
+        let in1 = inputOne.value;
+        let in2 = inputTwo.value;
+        let in3 = inputThree.value;
+
+        let url = "api/calculator?firstNum=" + in1 + "&secondNum=" + in2 + "&operation=" + in3;
+        let resSpan = document.getElementById('result');
+
+
+      fetch(url)
+            .then((resp) => checkError(resp))
+            .then(resp => resp.text())
+            .then((data) => {
+                resSpan.innerText = data;
+                }
+            )
+          .catch(() => {
+              resSpan.textContent = 'Invalid input!';
+              }
+          );
+
+        inputOne.value = '';
+        inputTwo.value = '';
+        inputThree.value = '';
+
+        function checkError(response) {
+          if (response.status >= 200 && response.status < 300) {
+              return response;
+          } else {
+              throw Error(response.status);
+          }
+        }
+    }
+
+    document.getElementById('calc').onclick = calc;
+</script>
+
+
+</body>
+</html>
