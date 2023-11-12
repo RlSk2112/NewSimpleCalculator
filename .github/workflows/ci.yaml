@@ -24,8 +24,6 @@ jobs:
         run: mvn clean package
 
       - name: Build image artifact
-        env:
-
         run:
           mvn spring-boot:build-image
           docker push
